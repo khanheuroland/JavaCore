@@ -66,32 +66,60 @@ public class App {
     {
         int total = 0;
         char sign = ' ';
-        for(int i=0; i< formula.length(); i++)
+        int i=0;
+        while (i<formula.length())
         {
             if(formula.charAt(i)=='+' || formula.charAt(i)=='-')
             {
                 sign = formula.charAt(i);
+                i++;
             }
             else
             {
                 if(sign== ' ')
                 {
-                    total = Integer.parseInt(String.valueOf(formula.charAt(i)));
+                    total = GetNumber(formula, 0);
+                    i = i+ String.valueOf(GetNumber(formula, 0)).length();
                 }
                 else
                 {
                     if(sign == '-')
                     {
-                        total-= Integer.parseInt(String.valueOf(formula.charAt(i)));
+                        total-= GetNumber(formula, i);
+                        i = i+ String.valueOf(GetNumber(formula, i)).length();
                     }
                     else
                     {
-                        total += Integer.parseInt(String.valueOf(formula.charAt(i)));
+                        total += GetNumber(formula, i);
+                        i = i+ String.valueOf(GetNumber(formula, i)).length();
                     }
                 }
             }
         }
         return total;
+    }
+
+    public static int GetNumber(String formular, int start)
+    {
+        String number="";
+        for(int i= start; i< formular.length(); i++)
+        {
+            if(formular.charAt(i)!='+' && formular.charAt(i)!='-')
+            {
+                number+= formular.charAt(i);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        return Integer.parseInt(number);
+    }
+
+    public int GetSummaryOrderNumber(int[] array)
+    {
+        return 0;
     }
 
 
